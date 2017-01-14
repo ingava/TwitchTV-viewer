@@ -6,7 +6,7 @@ const StreamerList = (props) => {
     console.log(props.streamers);
 
     return (
-        <div>
+        <div className="list">
             {props.streamers.map((streamer, index) => {
                 return <StreamerDetail key={index} streamer={streamer} />
             })}

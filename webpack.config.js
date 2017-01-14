@@ -27,13 +27,23 @@ module.exports = {
         filename: 'bundle.js'
     },
     module: {
-        loaders: [{
-            exclude: /node_modules/,
-            loader: 'babel',
-            query: {
-                presets: ['react', 'es2015']
+        loaders: [
+            {
+                exclude: /node_modules/,
+                loader: 'babel',
+                query: {
+                    presets: ['react', 'es2015']
+                }
+            },
+            {
+                test: /\.css$/,
+                loaders: [
+                    'style-loader',
+                    'css-loader?importLoaders=1',
+                    'postcss-loader'
+                ]
             }
-        }]
+        ]
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
