@@ -5,16 +5,16 @@ const StreamerDetail = (props) => {
 
     return (
         <div className="list-item">
-            <div className="list-item__image">
-                <img src={props.streamer.streamerPreview}/>
+            <div className="list-item__image-wrapper">
+                <img className="list-item__image" src={props.streamer.streamerPreview}/>
             </div>
-            <div className="list-item__profile-link">
-                <a href={props.streamer.streamerLink} target="_blank">{props.streamer.streamerName}</a>
+            <div>
+                <a href={props.streamer.streamerLink} target="_blank" className="list-item__profile-link">{props.streamer.streamerName}</a>
             </div>
+            <div className="list-item__status">{props.streamer.isStreaming ? <span>Online</span> : <span>Offline</span>}</div>
             <div className="list-item__game">
-                {props.streamer.game}
+                {props.streamer.game} {props.streamer.gameDetail}
             </div>
-            <div className="list-item__status">{props.streamer.isStreaming ? <p>Online</p> : <p>Offline</p>}</div>
         </div>
     )
 }

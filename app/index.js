@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import StreamerList from './components/streamer_list';
 
+import css from './styles/styles.css';
+
 import axios from 'axios';
 
 const URL = 'https://wind-bow.gomix.me/twitch-api/streams/';
 const streamers = ['p4wnyhof', 'ESL_SC2', 'freecodecamp', 'gamesdonequick', 'noobs2ninjas'];
 
-const streamersUrl = streamers.map((streamer) => URL + streamer);
+const streamsUrl = streamers.map((streamer) => URL + streamer);
 
 //const App = () => {
 class App extends Component {
@@ -21,7 +23,7 @@ class App extends Component {
 
         const promises = [];
 
-        streamersUrl.forEach(function(url){
+        streamsUrl.forEach(function(url){
             promises.push(axios.get(url))
         });
 
@@ -29,11 +31,13 @@ class App extends Component {
             const streamers = [];
 
             results.forEach(function(response) {
+                console.log(response);
                 if (response.data.stream != null) {
                     streamers.push({
                         streamerName: response.data.stream.channel.name,
                         streamerLink: response.data.stream.channel.url,
                         game: response.data.stream.game,
+                        gameDetail: response.data.stream.channel.status,
                         streamerPreview: response.data.stream.channel.logo,
                         isStreaming: true
                     })

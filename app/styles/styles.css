@@ -1,3 +1,49 @@
+.appTitle {
+    font-family: 'Audiowide', cursive;
+    text-align: center;
+    font-size: 3rem;
+}
+
 .list {
-    max-width: 70%;
+    max-width: 80%;
+    margin: auto;
+    font-family: 'Audiowide', cursive;
+    background-color: rgb(100, 20, 164);
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1em;
+    font-size: 1.4rem;
+    color: rgb(189, 169, 200);
+    border: solid 1px rgb(118, 75, 142);
+}
+
+.list-item:hover {
+    background-color: rgb(100, 65, 164);
+}
+
+.list-item > div {
+    min-width: 130px;
+}
+
+.list-item__image-wrapper {
+    height: 84px;
+}
+
+.list-item__image {
+    width: 80px;
+    border-radius: 50%;
+    border: solid 2px rgb(189, 169, 200);
+}
+
+.list-item__profile-link {
+    color: rgb(50, 0, 77);
+    text-decoration: none;
+}
+
+.list-item__profile-link:hover {
+    text-decoration: underline;
 }
