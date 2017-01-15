@@ -6,10 +6,9 @@ import css from './styles/styles.css';
 
 import axios from 'axios';
 
-const URL = 'https://wind-bow.gomix.me/twitch-api/streams/';
+const streamerURL = 'https://wind-bow.gomix.me/twitch-api/streams/';
+const userURL = 'https://wind-bow.gomix.me/twitch-api/users/';
 const streamers = ['p4wnyhof', 'ESL_SC2', 'freecodecamp', 'gamesdonequick', 'noobs2ninjas'];
-
-const streamsUrl = streamers.map((streamer) => URL + streamer);
 
 //const App = () => {
 class App extends Component {
@@ -21,33 +20,47 @@ class App extends Component {
 
     componentWillMount () {
 
-        const promises = [];
-
-        streamsUrl.forEach(function(url){
-            promises.push(axios.get(url))
+        streamers.forEach((streamer) => {
+            this.getStreamerInfo(streamer);
         });
+    }
+
+    getStreamerInfo(username) {
+
+        const promises = [
+            axios.get(streamerURL + username),
+            axios.get(userURL + username)
+        ];
+
+        const streamer = {
+            name: null,
+            link: null,
+            game: null,
+            gameDetail: null,
+            logo: null,
+            isStreaming: null,
+        };
 
         axios.all(promises).then((results) => {
-            const streamers = [];
-
             results.forEach(function(response) {
-                console.log(response);
-                if (response.data.stream != null) {
-                    streamers.push({
-                        streamerName: response.data.stream.channel.name,
-                        streamerLink: response.data.stream.channel.url,
-                        game: response.data.stream.game,
-                        gameDetail: response.data.stream.channel.status,
-                        streamerPreview: response.data.stream.channel.logo,
-                        isStreaming: true
-                    })
+                if (response.data.stream != undefined) {
+                    if (response.data.stream != null) {
+                        streamer.link = response.data.stream.channel.url;
+                        streamer.game = response.data.stream.game;
+                        streamer.gameDetail = response.data.stream.channel.status;
+                        streamer.isStreaming = true;
+                    } else {
+                        streamer.isStreaming = false;
+                    }
                 } else {
-                    streamers.push({isStreaming: false});
+                    streamer.name = response.data.display_name;
+                    streamer.logo = response.data.logo;
                 }
             });
 
-            this.setState({ streamers: streamers });
+            this.setState({ streamers: [...this.state.streamers, streamer] })
         });
+
     }
 
     render() {

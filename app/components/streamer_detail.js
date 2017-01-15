@@ -6,10 +6,10 @@ const StreamerDetail = (props) => {
     return (
         <div className="list-item">
             <div className="list-item__image-wrapper">
-                <img className="list-item__image" src={props.streamer.streamerPreview}/>
+                <img className="list-item__image" src={props.streamer.logo}/>
             </div>
             <div>
-                <a href={props.streamer.streamerLink} target="_blank" className="list-item__profile-link">{props.streamer.streamerName}</a>
+                <a href={props.streamer.link} target="_blank" className="list-item__profile-link">{props.streamer.name}</a>
             </div>
             <div className="list-item__status">{props.streamer.isStreaming ? <span>Online</span> : <span>Offline</span>}</div>
             <div className="list-item__game">
