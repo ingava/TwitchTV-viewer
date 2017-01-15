@@ -1,23 +1,3 @@
-// module.exports = {
-//     entry: [
-//         './app/index.js'
-//     ],
-//     output: {
-//         path: __dirname + "/public",
-//         filename: 'bundle.js'
-//     },
-//     module: {
-//         loader: [{
-//             test: /\.js$/,
-//             exclude: /node_modules/,
-//             loaders: 'babel-loader ',
-//             query: {
-//                 presets: ['react', 'es2015']
-//             }
-//         }]
-//     }
-// }
-
 module.exports = {
     entry: [
         './app/index.js'
@@ -40,7 +20,7 @@ module.exports = {
                 loaders: [
                     'style-loader',
                     'css-loader?importLoaders=1',
-                    'postcss-loader'
+                    'postcss-loader?sourceMap=inline'
                 ]
             }
         ]
