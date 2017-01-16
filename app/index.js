@@ -7,7 +7,7 @@ import css from './styles/styles.css';
 import axios from 'axios';
 
 const streamerURL = 'https://wind-bow.gomix.me/twitch-api/streams/';
-const userURL = 'https://wind-bow.gomix.me/twitch-api/users/';
+const userURL = 'https://wind-bow.gomix.me/twitch-api/channels/';
 const streamers = ['p4wnyhof', 'ESL_SC2', 'freecodecamp', 'gamesdonequick', 'noobs2ninjas'];
 
 //const App = () => {
@@ -45,7 +45,6 @@ class App extends Component {
             results.forEach(function(response) {
                 if (response.data.stream != undefined) {
                     if (response.data.stream != null) {
-                        streamer.link = response.data.stream.channel.url;
                         streamer.game = response.data.stream.game;
                         streamer.gameDetail = response.data.stream.channel.status;
                         streamer.isStreaming = true;
@@ -55,6 +54,7 @@ class App extends Component {
                 } else {
                     streamer.name = response.data.display_name;
                     streamer.logo = response.data.logo;
+                    streamer.link = response.data.url;
                 }
             });
 

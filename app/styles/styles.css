@@ -25,10 +25,6 @@
     background-color: rgb(100, 65, 164);
 }
 
-.list-item > div {
-    min-width: 130px;
-}
-
 .list-item__image-wrapper {
     height: 84px;
 }
@@ -42,8 +38,17 @@
 .list-item__profile-link {
     color: rgb(50, 0, 77);
     text-decoration: none;
+    width: 220px;
 }
 
 .list-item__profile-link:hover {
     text-decoration: underline;
+}
+
+.list-item__status {
+    width: 130px;
+}
+
+.list-item__game {
+    width: 620px;
 }
